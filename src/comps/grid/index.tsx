@@ -24,7 +24,7 @@ const Grid: FC = () => {
         <Report />
       </Container>
 
-      {!display && <Total marginTop={27} marginLeft={100} />}
+      {!display && <Total marginTop='27px' marginLeft={100} />}
     </Wrapper>
   );
 };

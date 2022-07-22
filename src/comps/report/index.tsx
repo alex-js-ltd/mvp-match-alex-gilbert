@@ -62,7 +62,7 @@ const ReportComp: FC = () => {
       <Legend arr={legendArr} />
       <Chart data={chartData} totalValue={returnTotal(reportArray)} />
 
-      <Total marginTop={87} marginLeft={0} width='100%' />
+      <Total marginLeft={0} marginTop='auto' width='100%' />
     </Wrapper>
   );
 };

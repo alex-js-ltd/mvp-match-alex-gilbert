@@ -9,7 +9,7 @@ import { returnTotal } from '../../utils/project';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-const Total: FC<{ marginTop: number; marginLeft: number; width?: string }> = ({
+const Total: FC<{ marginTop?: string; marginLeft: number; width?: string }> = ({
   marginTop,
   marginLeft,
   width,

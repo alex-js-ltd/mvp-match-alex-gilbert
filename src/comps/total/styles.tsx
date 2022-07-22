@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div<{
-  marginTop?: number;
+  marginTop?: string;
   marginLeft?: number;
   width?: string;
 }>`
+  display: block;
   height: 53px;
   border-radius: 10px;
   background: #f1fafe;
   display: flex;
   align-items: center;
-  margin-top: ${(props) => props.marginTop}px;
+  margin-top: ${(props) => props.marginTop};
   margin-left: ${(props) => props.marginLeft}px;
   width: ${(props) => props.width || 'calc(100% - 200px)'};
 `;
