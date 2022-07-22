@@ -63,5 +63,5 @@ export const reportReducer = (
     return { ...state, showReport: !state.showReport };
   }
 
-  return { ...state };
+  return state;
 };
