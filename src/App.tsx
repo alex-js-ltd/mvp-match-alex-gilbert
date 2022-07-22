@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { GlobalStyle } from './theme';
 import Header from './comps/header';
 import SideBar from './comps/sidebar';
@@ -6,13 +6,13 @@ import SubHeader from './comps/subheader';
 import Grid from './comps/grid';
 
 const App: FC = () => (
-  <div>
+  <Fragment>
     <GlobalStyle />
     <Header />
     <SubHeader />
     <SideBar />
     <Grid />
-  </div>
+  </Fragment>
 );
 
 export default App;
