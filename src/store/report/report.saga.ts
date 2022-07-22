@@ -27,7 +27,7 @@ export const postReport = async (
 };
 
 export function* postReportAsync({
-  payload: { from, to, projectId, gatewayId },
+  payload: { from, to, projectId, gatewayId, selectedProject, selectedGateway },
 }: PostReportStart) {
   try {
     const { data } = yield* call(postReport, from, to, projectId, gatewayId);
@@ -37,6 +37,8 @@ export function* postReportAsync({
         report: data?.data,
         projectId: projectId,
         gatewayId: gatewayId,
+        selectedProject: selectedProject,
+        selectedGateway: selectedGateway,
       })
     );
   } catch (error) {

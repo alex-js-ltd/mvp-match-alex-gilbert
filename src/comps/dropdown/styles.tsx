@@ -38,7 +38,7 @@ export const MenuItem = styled.div`
   }
 `;
 
-export const Wrapper = styled.div<{ marginLeft: number }>`
+export const Wrapper = styled.div<{ marginLeft: number; minWidth?: number }>`
   position: relative;
   cursor: pointer;
   white-space: nowrap;
@@ -59,6 +59,8 @@ export const Wrapper = styled.div<{ marginLeft: number }>`
   background-repeat: no-repeat;
   background-image: url("data:image/svg+xml,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 11L0.937823 0.499999L13.0622 0.5L7 11Z' fill='white'/%3E%3C/svg%3E");
   margin-left: ${(props) => props.marginLeft}px;
+  min-width: ${(props) => props.minWidth}px;
+  box-sizing: border-box;
 
   &:hover ${Menu} {
     display: block;

@@ -9,7 +9,14 @@ import {
 
 export type PostReportStart = ActionWithPayload<
   REPORT_ACTION_TYPES.POST_REPORT_START,
-  { from: string; to: string; projectId: string; gatewayId: string }
+  {
+    from: string;
+    to: string;
+    projectId: string;
+    gatewayId: string;
+    selectedProject: string;
+    selectedGateway: string;
+  }
 >;
 
 export type PostReportSuccess = ActionWithPayload<
@@ -32,6 +39,8 @@ interface ReportSuccessPayload {
   report: Report[];
   projectId: string | null;
   gatewayId: string | null;
+  selectedProject: string;
+  selectedGateway: string;
 }
 
 export const postReportSuccess = withMatcher(

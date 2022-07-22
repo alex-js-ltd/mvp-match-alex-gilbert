@@ -21,7 +21,7 @@ const DropDownProject: FC<{
   );
 
   return (
-    <Wrapper marginLeft={marginLeft}>
+    <Wrapper marginLeft={marginLeft} minWidth={135}>
       {title}
       <Menu>
         <Container>
@@ -33,6 +33,7 @@ const DropDownProject: FC<{
                   from: '2021-01-01',
                   to: '2021-12-31',
                   gatewayId: selectedGatewayId,
+                  selectedProject: 'All projects',
                 },
               })
             }
@@ -50,6 +51,7 @@ const DropDownProject: FC<{
                     to: '2021-12-31',
                     projectId: projectId,
                     gatewayId: selectedGatewayId,
+                    selectedProject: name,
                   },
                 })
               }
@@ -75,7 +77,7 @@ const DropDownGateway: FC<{
   );
 
   return (
-    <Wrapper marginLeft={marginLeft}>
+    <Wrapper marginLeft={marginLeft} minWidth={145}>
       {title}
 
       <Menu>
@@ -88,6 +90,7 @@ const DropDownGateway: FC<{
                   from: '2021-01-01',
                   to: '2021-12-31',
                   projectId: selectedProjectId,
+                  selectedGateway: 'All gateways',
                 },
               })
             }
@@ -105,6 +108,7 @@ const DropDownGateway: FC<{
                     to: '2021-12-31',
                     projectId: selectedProjectId,
                     gatewayId: gatewayId,
+                    selectedGateway: name,
                   },
                 })
               }

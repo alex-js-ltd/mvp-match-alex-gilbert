@@ -5,8 +5,6 @@ export const imgUri =
 
 export const Wrapper = styled.div`
   flex: 1;
-  border: 1px solid blue;
-
   margin-left: 100px;
   width: calc(100% - 200px);
   height: 172px;

@@ -31,6 +31,14 @@ const SubHeader: FC = () => {
     (state: RootState) => state.gateway?.gateway
   );
 
+  const selectedProject = useSelector(
+    (state: RootState) => state.report?.selectedProject
+  );
+
+  const selectedGateway = useSelector(
+    (state: RootState) => state.report?.selectedGateway
+  );
+
   return (
     <Wrapper>
       <Container>
@@ -46,12 +54,12 @@ const SubHeader: FC = () => {
 
         <FlexBox flexDirection='row' marginTop={33}>
           <DropDownProject
-            title='Select project'
+            title={selectedProject}
             marginLeft={0}
             projectArray={projectArray}
           />
           <DropDownGateway
-            title='Select gateway'
+            title={selectedGateway}
             marginLeft={23}
             gateWayArray={gateWayArray}
           />

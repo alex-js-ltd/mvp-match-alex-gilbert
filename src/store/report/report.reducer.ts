@@ -15,6 +15,8 @@ export type ReportState = {
   readonly error: Error | null;
   readonly selectedProjectId: string | null;
   readonly selectedGatewayId: string | null;
+  readonly selectedProject: string;
+  readonly selectedGateway: string;
   readonly showReport: boolean;
 };
 
@@ -24,6 +26,8 @@ export const REPORT_INITIAL_STATE: ReportState = {
   error: null,
   selectedProjectId: null,
   selectedGatewayId: null,
+  selectedProject: 'Select project',
+  selectedGateway: 'Select gateway',
   showReport: false,
 };
 
@@ -41,6 +45,12 @@ export const reportReducer = (
       report: action.payload.report,
       selectedProjectId: action.payload.projectId,
       selectedGatewayId: action.payload.gatewayId,
+      selectedProject: action.payload.selectedProject
+        ? action.payload?.selectedProject
+        : state.selectedProject,
+      selectedGateway: action.payload.selectedGateway
+        ? action.payload.selectedGateway
+        : state.selectedGateway,
       isLoading: false,
     };
   }
@@ -53,5 +63,5 @@ export const reportReducer = (
     return { ...state, showReport: !state.showReport };
   }
 
-  return state;
+  return { ...state };
 };
