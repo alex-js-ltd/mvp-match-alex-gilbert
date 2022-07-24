@@ -16,7 +16,12 @@ const Chart: FC<{ data: ChartData[]; totalValue: number }> = ({
 }) => {
   return (
     <Wrapper>
-      <PieChart lineWidth={50} data={data} totalValue={totalValue} />
+      <PieChart
+        segmentsShift={0.2}
+        lineWidth={50}
+        data={data}
+        totalValue={totalValue}
+      />
     </Wrapper>
   );
 };
