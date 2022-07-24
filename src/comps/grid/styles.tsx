@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   margin-top: 27px;
   width: 100%;
   height: auto;
-  padding-bottom: 27px;
+  padding-bottom: 5px;
 `;
 
 export const Container = styled.div`

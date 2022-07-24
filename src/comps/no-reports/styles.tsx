@@ -7,8 +7,26 @@ export const Wrapper = styled.div`
   flex: 1;
   margin-left: 100px;
   width: calc(100% - 200px);
-  height: 172px;
+  height: auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const Text = styled.div<{
+  fontSize: number;
+  lineHeight: number;
+  color: string;
+  marginBottom: number;
+}>`
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  max-width: 470px;
+  font-size: ${(props) => props.fontSize}px;
+  line-height: ${(props) => props.lineHeight}px;
+  color: ${(props) => props.color};
+  margin-bottom: ${(props) => props.marginBottom}px;
 `;

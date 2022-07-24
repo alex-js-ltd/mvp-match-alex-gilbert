@@ -4,6 +4,7 @@ import Header from './comps/header';
 import SideBar from './comps/sidebar';
 import SubHeader from './comps/subheader';
 import Grid from './comps/grid';
+import Footer from './comps/footer';
 
 const App: FC = () => (
   <Fragment>
@@ -12,6 +13,7 @@ const App: FC = () => (
     <SubHeader />
     <SideBar />
     <Grid />
+    <Footer />
   </Fragment>
 );
 
