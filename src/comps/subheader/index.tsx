@@ -13,6 +13,9 @@ import { RootState } from '../../store/store';
 import { GATEWAY_ACTION_TYPES } from '../../store/gateway/gateway.types';
 import { REPORT_ACTION_TYPES } from '../../store/report/report.types';
 
+import moment from 'moment';
+import { Moment } from 'moment';
+
 const SubHeader: FC = () => {
   const dispatch = useDispatch();
 
@@ -48,6 +51,26 @@ const SubHeader: FC = () => {
     (state: RootState) => state.report?.selectedGatewayId
   );
 
+  const startDate = useSelector((state: RootState) => state.date?.start);
+
+  const endDate = useSelector((state: RootState) => state.date?.end);
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      dispatch({
+        type: REPORT_ACTION_TYPES.POST_REPORT_START,
+        payload: {
+          from: startDate,
+          to: endDate,
+          gatewayId: selectedGatewayId,
+          projectId: selectedProjectId,
+        },
+      });
+
+      console.log(moment(startDate).format('YYYY-MM-DD'));
+    }
+  }, [startDate, endDate]);
+
   const ProjectList: FC = () => (
     <Fragment>
       <MenuItem
@@ -55,8 +78,8 @@ const SubHeader: FC = () => {
           dispatch({
             type: REPORT_ACTION_TYPES.POST_REPORT_START,
             payload: {
-              from: '2021-01-01',
-              to: '2021-12-31',
+              from: startDate,
+              to: endDate,
               gatewayId: selectedGatewayId,
               selectedProject: 'All projects',
             },
@@ -72,8 +95,8 @@ const SubHeader: FC = () => {
             dispatch({
               type: REPORT_ACTION_TYPES.POST_REPORT_START,
               payload: {
-                from: '2021-01-01',
-                to: '2021-12-31',
+                from: startDate,
+                to: endDate,
                 projectId: projectId,
                 gatewayId: selectedGatewayId,
                 selectedProject: name,
@@ -152,7 +175,7 @@ const SubHeader: FC = () => {
             minWidth={145}
           />
 
-          <Date />
+          <Date startDate={startDate} endDate={endDate} />
 
           <Button
             onClick={() =>

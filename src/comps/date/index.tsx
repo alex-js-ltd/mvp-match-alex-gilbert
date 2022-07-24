@@ -4,40 +4,28 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
-import { Moment } from 'moment';
 import { Wrapper } from './styles';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { DATE_ACTION_TYPES } from '../../store/date/date.type';
 
-import { RootState } from '../../store/store';
+import { Moment } from 'moment';
+import moment from 'moment';
 
-const Date: FC = () => {
-  // const [startDate, setStartDate] = useState<Moment | null>(null);
-  // const [endDate, setEndDate] = useState<Moment | null>(null);
+const Date: FC<{
+  startDate: null | string;
+  endDate: null | string;
+}> = ({ startDate, endDate }) => {
   const [focusedInput, setFocusedInput] = useState<any>(null);
 
-  // const handleDatesChange = ({ startDate, endDate }: any) => {
-  //   setStartDate(startDate);
-  //   setEndDate(endDate);
-  // };
-
   const dispatch = useDispatch();
-
-  const startDate = useSelector((state: RootState) => state.date?.start);
-
-  const endDate = useSelector((state: RootState) => state.date?.end);
-
-  useEffect(() => {
-    console.log(startDate);
-  }, [startDate]);
 
   return (
     <Wrapper>
       <DateRangePicker
-        startDate={startDate}
+        startDate={moment(startDate, 'YYYY-MM-DD')}
         startDateId='tata-start-date'
-        endDate={endDate}
+        endDate={moment(endDate, 'YYYY-MM-DD')}
         endDateId='tata-end-date'
         onDatesChange={({ startDate, endDate }) =>
           dispatch({
@@ -47,6 +35,7 @@ const Date: FC = () => {
         }
         focusedInput={focusedInput}
         onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+        isOutsideRange={(day) => moment().diff(day) < 0}
       />
     </Wrapper>
   );
