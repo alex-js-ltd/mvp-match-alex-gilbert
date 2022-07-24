@@ -19,7 +19,6 @@ export const Wrapper = styled.div`
     padding-left: 12px;
     border-radius: 5px;
     overflow: hidden;
-
     background-size: 11px 12px;
     background-position: right 12px top 9px;
     background-repeat: no-repeat;
