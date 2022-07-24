@@ -1,8 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, Fragment } from 'react';
 import { Wrapper, Container, FlexBox, Text, Button } from './styles';
+import { MenuItem } from '../dropdown/styles';
 
 // comps
-import { DropDownProject, DropDownGateway } from '../dropdown';
+import DropDown from '../dropdown';
 import Date from '../date';
 
 // redux
@@ -19,13 +20,13 @@ const SubHeader: FC = () => {
     dispatch({ type: PROJECT_ACTION_TYPES.FETCH_PROJECT_START });
   }, []);
 
-  const projectArray = useSelector(
-    (state: RootState) => state.project?.project
-  );
-
   useEffect(() => {
     dispatch({ type: GATEWAY_ACTION_TYPES.FETCH_GATEWAY_START });
   }, []);
+
+  const projectArray = useSelector(
+    (state: RootState) => state.project?.project
+  );
 
   const gateWayArray = useSelector(
     (state: RootState) => state.gateway?.gateway
@@ -35,8 +36,94 @@ const SubHeader: FC = () => {
     (state: RootState) => state.report?.selectedProject
   );
 
+  const selectedProjectId = useSelector(
+    (state: RootState) => state.report?.selectedProjectId
+  );
+
   const selectedGateway = useSelector(
     (state: RootState) => state.report?.selectedGateway
+  );
+
+  const selectedGatewayId = useSelector(
+    (state: RootState) => state.report?.selectedGatewayId
+  );
+
+  const ProjectList: FC = () => (
+    <Fragment>
+      <MenuItem
+        onClick={() =>
+          dispatch({
+            type: REPORT_ACTION_TYPES.POST_REPORT_START,
+            payload: {
+              from: '2021-01-01',
+              to: '2021-12-31',
+              gatewayId: selectedGatewayId,
+              selectedProject: 'All projects',
+            },
+          })
+        }
+      >
+        All projects
+      </MenuItem>
+      {projectArray?.map(({ projectId, name }) => (
+        <MenuItem
+          key={projectId}
+          onClick={() =>
+            dispatch({
+              type: REPORT_ACTION_TYPES.POST_REPORT_START,
+              payload: {
+                from: '2021-01-01',
+                to: '2021-12-31',
+                projectId: projectId,
+                gatewayId: selectedGatewayId,
+                selectedProject: name,
+              },
+            })
+          }
+        >
+          {name}
+        </MenuItem>
+      ))}
+    </Fragment>
+  );
+
+  const GatewayList = () => (
+    <Fragment>
+      <MenuItem
+        onClick={() =>
+          dispatch({
+            type: REPORT_ACTION_TYPES.POST_REPORT_START,
+            payload: {
+              from: '2021-01-01',
+              to: '2021-12-31',
+              projectId: selectedProjectId,
+              selectedGateway: 'All gateways',
+            },
+          })
+        }
+      >
+        All gateways
+      </MenuItem>
+      {gateWayArray?.map(({ gatewayId, name }) => (
+        <MenuItem
+          key={gatewayId}
+          onClick={() =>
+            dispatch({
+              type: REPORT_ACTION_TYPES.POST_REPORT_START,
+              payload: {
+                from: '2021-01-01',
+                to: '2021-12-31',
+                projectId: selectedProjectId,
+                gatewayId: gatewayId,
+                selectedGateway: name,
+              },
+            })
+          }
+        >
+          {name}
+        </MenuItem>
+      ))}
+    </Fragment>
   );
 
   return (
@@ -53,16 +140,18 @@ const SubHeader: FC = () => {
         </FlexBox>
 
         <FlexBox flexDirection='row' marginTop={33}>
-          <DropDownProject
-            title={selectedProject}
-            marginLeft={0}
-            projectArray={projectArray}
+          <DropDown
+            selected={selectedProject}
+            List={<ProjectList />}
+            minWidth={135}
           />
-          <DropDownGateway
-            title={selectedGateway}
+          <DropDown
+            selected={selectedGateway}
+            List={<GatewayList />}
             marginLeft={23}
-            gateWayArray={gateWayArray}
+            minWidth={145}
           />
+
           <Date title='From date' marginLeft={23} />
           <Date title='To date' marginLeft={23} />
 

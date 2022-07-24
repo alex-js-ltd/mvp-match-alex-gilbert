@@ -38,7 +38,7 @@ export const MenuItem = styled.div`
   }
 `;
 
-export const Wrapper = styled.div<{ marginLeft: number; minWidth?: number }>`
+export const Wrapper = styled.div<{ marginLeft?: number; minWidth?: number }>`
   position: relative;
   cursor: pointer;
   white-space: nowrap;
