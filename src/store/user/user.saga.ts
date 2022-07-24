@@ -7,7 +7,9 @@ import { fetchUserSuccess, fetchUserFailed } from './user.action';
 import { USER_ACTION_TYPES, Res } from './user.types';
 
 async function fetchUser(): Promise<Res> {
-  return await axios.get(`http://178.63.13.157:8090/mock-api/api/users`);
+  return await axios.get(
+    `${process.env.REACT_APP_BASE_URL}/mock-api/api/users`
+  );
 }
 
 export function* fetchUserAsync() {

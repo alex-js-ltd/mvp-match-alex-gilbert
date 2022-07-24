@@ -18,12 +18,15 @@ export const postReport = async (
 ): Promise<any> => {
   if (!from || !to) return;
 
-  return await axios.post(`http://178.63.13.157:8090/mock-api/api/report`, {
-    from: from,
-    to: to,
-    projectId: projectId,
-    gatewayId: gatewayId,
-  });
+  return await axios.post(
+    `${process.env.REACT_APP_BASE_URL}/mock-api/api/report`,
+    {
+      from: from,
+      to: to,
+      projectId: projectId,
+      gatewayId: gatewayId,
+    }
+  );
 };
 
 export function* postReportAsync({

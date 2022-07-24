@@ -7,14 +7,14 @@ import { fetchGateWaySuccess, fetchGateWayFailed } from './gateway.action';
 import { GATEWAY_ACTION_TYPES, Res } from './gateway.types';
 
 async function fetchGateWay(): Promise<Res> {
-  return await axios.get(`http://178.63.13.157:8090/mock-api/api/gateways`);
+  return await axios.get(
+    `${process.env.REACT_APP_BASE_URL}/mock-api/api/gateways`
+  );
 }
 
 export function* fetchGateWayAsync() {
   try {
     const { data } = yield* call(fetchGateWay);
-
-    console.log('GATEWAY', data);
 
     yield* put(fetchGateWaySuccess(data?.data));
   } catch (error) {

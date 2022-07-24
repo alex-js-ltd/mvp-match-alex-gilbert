@@ -87,7 +87,7 @@ const SubHeader: FC = () => {
     </Fragment>
   );
 
-  const GatewayList = () => (
+  const GatewayList: FC = () => (
     <Fragment>
       <MenuItem
         onClick={() =>
