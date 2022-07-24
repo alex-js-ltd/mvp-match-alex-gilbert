@@ -152,8 +152,7 @@ const SubHeader: FC = () => {
             minWidth={145}
           />
 
-          <Date title='From date' marginLeft={23} />
-          <Date title='To date' marginLeft={23} />
+          <Date />
 
           <Button
             onClick={() =>
