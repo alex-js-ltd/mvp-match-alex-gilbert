@@ -10,14 +10,20 @@ export const Container = styled.div`
   padding-right: 100px;
   height: auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 `;
 
-export const FlexBox = styled.div<{ flexDirection: string; marginTop: number }>`
-  display: flex;
+export const FlexBox = styled.div<{
+  flexDirection: string;
+  marginTop: number;
+  marginLeft?: string;
+}>`
+  display: inline-flex;
   flex-direction: ${(props) => props.flexDirection};
   height: auto;
   margin-top: ${(props) => props.marginTop}px;
+  margin-left: ${(props) => props.marginLeft};
 `;
 
 export const Text = styled.div<{
