@@ -6,7 +6,6 @@ import ProjectItem from '../project-item';
 
 // redux
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 
 import {
   selectProject,
@@ -18,11 +17,7 @@ import {
 import { selectProjectArr } from '../../store/project/project.selector';
 import { selectReportArr } from '../../store/report/report.selector';
 
-const Projects: FC = () => {
-  const projectArray = useSelector(selectProjectArr);
-
-  const reportArray = useSelector(selectReportArr);
-
+const TitleWrapper: FC = () => {
   const selectedProject = useSelector(selectProject);
 
   const selectedProjectId = useSelector(selectProjectId);
@@ -31,23 +26,37 @@ const Projects: FC = () => {
 
   const selectedGatewayId = useSelector(selectGatewayId);
 
+  return (
+    <TitleContainer paddingTop={18} paddingLeft={19}>
+      <div>{selectedProjectId ? selectedProject : 'All projects'}</div>
+      <div>&nbsp;|&nbsp;</div>
+      <div>{selectedGatewayId ? selectedGateway : 'All gateways'}</div>
+    </TitleContainer>
+  );
+};
+
+const ProjectsWrapper: FC = () => {
+  const projectArray = useSelector(selectProjectArr);
+  const reportArray = useSelector(selectReportArr);
+
   const returnData = (projectId: string) => {
     return reportArray?.filter((el) => el.projectId === projectId);
   };
 
   return (
-    <Container>
-      <TitleContainer paddingTop={18} paddingLeft={19}>
-        <div>{selectedProjectId ? selectedProject : 'All projects'}</div>
-        <div>&nbsp;|&nbsp;</div>
-        <div>{selectedGatewayId ? selectedGateway : 'All gateways'}</div>
-      </TitleContainer>
-
+    <Fragment>
       {projectArray?.map(({ projectId, name }) => (
         <ProjectItem key={projectId} name={name} data={returnData(projectId)} />
       ))}
-    </Container>
+    </Fragment>
   );
 };
+
+const Projects: FC = () => (
+  <Container>
+    <TitleWrapper />
+    <ProjectsWrapper />
+  </Container>
+);
 
 export default Projects;

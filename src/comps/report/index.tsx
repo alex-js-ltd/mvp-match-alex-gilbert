@@ -59,7 +59,6 @@ const ReportComp: FC = () => {
     <Wrapper>
       <Legend arr={legendArr} />
       <Chart data={chartData} totalValue={returnTotal(reportArray)} />
-
       <Total marginLeft={0} marginTop='auto' width='100%' />
     </Wrapper>
   );
