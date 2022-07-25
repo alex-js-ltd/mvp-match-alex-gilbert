@@ -15,16 +15,13 @@ import {
   selectGatewayId,
 } from '../../store/report/report.selector';
 
+import { selectProjectArr } from '../../store/project/project.selector';
+import { selectReportArr } from '../../store/report/report.selector';
+
 const Projects: FC = () => {
-  const projectArray = useSelector(
-    (state: RootState) => state.project?.project
-  );
+  const projectArray = useSelector(selectProjectArr);
 
-  const reportArray = useSelector((state: RootState) => state.report?.report);
-
-  const returnData = (projectId: string) => {
-    return reportArray?.filter((el) => el.projectId === projectId);
-  };
+  const reportArray = useSelector(selectReportArr);
 
   const selectedProject = useSelector(selectProject);
 
@@ -33,6 +30,10 @@ const Projects: FC = () => {
   const selectedGateway = useSelector(selectGateway);
 
   const selectedGatewayId = useSelector(selectGatewayId);
+
+  const returnData = (projectId: string) => {
+    return reportArray?.filter((el) => el.projectId === projectId);
+  };
 
   return (
     <Container>

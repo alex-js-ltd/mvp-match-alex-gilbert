@@ -24,3 +24,8 @@ export const selectGatewayId = createSelector(
   [selectReportReducer],
   (report) => report.selectedGatewayId
 );
+
+export const selectReportArr = createSelector(
+  [selectReportReducer],
+  (report) => report.report
+);

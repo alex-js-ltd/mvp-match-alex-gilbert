@@ -9,8 +9,9 @@ import Legend from '../legend';
 // redux
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-
 import { Report } from '../../store/report/report.types';
+import { selectProjectArr } from '../../store/project/project.selector';
+import { selectReportArr } from '../../store/report/report.selector';
 
 import { colorArr } from '../../theme';
 
@@ -19,11 +20,8 @@ import Total from '../total';
 const ReportComp: FC = () => {
   const display = useSelector((state: RootState) => state.report?.showReport);
 
-  const projectArray = useSelector(
-    (state: RootState) => state.project?.project
-  );
-
-  const reportArray = useSelector((state: RootState) => state.report?.report);
+  const projectArray = useSelector(selectProjectArr);
+  const reportArray = useSelector(selectReportArr);
 
   const returnData = (projectId: string) => {
     return reportArray?.filter((el) => el.projectId === projectId);
