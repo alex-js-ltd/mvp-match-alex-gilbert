@@ -8,6 +8,13 @@ import ProjectItem from '../project-item';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
+import {
+  selectProject,
+  selectProjectId,
+  selectGateway,
+  selectGatewayId,
+} from '../../store/report/report.selector';
+
 const Projects: FC = () => {
   const projectArray = useSelector(
     (state: RootState) => state.project?.project
@@ -19,20 +26,20 @@ const Projects: FC = () => {
     return reportArray?.filter((el) => el.projectId === projectId);
   };
 
-  const selectedProject = useSelector(
-    (state: RootState) => state.report?.selectedProject
-  );
+  const selectedProject = useSelector(selectProject);
 
-  const selectedGateway = useSelector(
-    (state: RootState) => state.report?.selectedGateway
-  );
+  const selectedProjectId = useSelector(selectProjectId);
+
+  const selectedGateway = useSelector(selectGateway);
+
+  const selectedGatewayId = useSelector(selectGatewayId);
 
   return (
     <Container>
       <TitleContainer paddingTop={18} paddingLeft={19}>
-        <div>{selectedProject}</div>
+        <div>{selectedProjectId ? selectedProject : 'All projects'}</div>
         <div>&nbsp;|&nbsp;</div>
-        <div>{selectedGateway}</div>
+        <div>{selectedGatewayId ? selectedGateway : 'All gateways'}</div>
       </TitleContainer>
 
       {projectArray?.map(({ projectId, name }) => (

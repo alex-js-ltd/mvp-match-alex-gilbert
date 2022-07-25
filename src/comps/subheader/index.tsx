@@ -9,9 +9,18 @@ import Date from '../date';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { PROJECT_ACTION_TYPES } from '../../store/project/project.types';
-import { RootState } from '../../store/store';
+
 import { GATEWAY_ACTION_TYPES } from '../../store/gateway/gateway.types';
 import { REPORT_ACTION_TYPES } from '../../store/report/report.types';
+import { selectProjectArr } from '../../store/project/project.selector';
+import { selectGatewayArr } from '../../store/gateway/gateway.selector';
+import {
+  selectProject,
+  selectProjectId,
+  selectGateway,
+  selectGatewayId,
+} from '../../store/report/report.selector';
+import { selectStartDate, selectEndDate } from '../../store/date/date.selector';
 
 const SubHeader: FC = () => {
   const dispatch = useDispatch();
@@ -24,33 +33,21 @@ const SubHeader: FC = () => {
     dispatch({ type: GATEWAY_ACTION_TYPES.FETCH_GATEWAY_START });
   }, []);
 
-  const projectArray = useSelector(
-    (state: RootState) => state.project?.project
-  );
+  const projectArray = useSelector(selectProjectArr);
 
-  const gateWayArray = useSelector(
-    (state: RootState) => state.gateway?.gateway
-  );
+  const gateWayArray = useSelector(selectGatewayArr);
 
-  const selectedProject = useSelector(
-    (state: RootState) => state.report?.selectedProject
-  );
+  const selectedProject = useSelector(selectProject);
 
-  const selectedProjectId = useSelector(
-    (state: RootState) => state.report?.selectedProjectId
-  );
+  const selectedProjectId = useSelector(selectProjectId);
 
-  const selectedGateway = useSelector(
-    (state: RootState) => state.report?.selectedGateway
-  );
+  const selectedGateway = useSelector(selectGateway);
 
-  const selectedGatewayId = useSelector(
-    (state: RootState) => state.report?.selectedGatewayId
-  );
+  const selectedGatewayId = useSelector(selectGatewayId);
 
-  const startDate = useSelector((state: RootState) => state.date?.start);
+  const startDate = useSelector(selectStartDate);
 
-  const endDate = useSelector((state: RootState) => state.date?.end);
+  const endDate = useSelector(selectEndDate);
 
   useEffect(() => {
     if (startDate && endDate) {
