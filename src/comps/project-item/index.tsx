@@ -8,7 +8,9 @@ import { TableRowHeader, TableRowDefault } from '../table-row/index';
 
 // redux
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+
+import { selectGatewayArr } from '../../store/gateway/gateway.selector';
+import { selectGatewayId } from '../../store/report/report.selector';
 
 // utils
 import { numberWithCommas } from '../../utils/regex';
@@ -17,13 +19,9 @@ import { returnTotal } from '../../utils/project';
 const ProjectItem: FC<{ name: string; data: Report[] }> = ({ name, data }) => {
   const [showData, setShowData] = useState<boolean>(false);
 
-  const gateWayArray = useSelector(
-    (state: RootState) => state.gateway?.gateway
-  );
+  const gateWayArray = useSelector(selectGatewayArr);
 
-  const selectedGatewayId = useSelector(
-    (state: RootState) => state.report?.selectedGatewayId
-  );
+  const selectedGatewayId = useSelector(selectGatewayId);
 
   if (data?.length === 0) {
     return null;
