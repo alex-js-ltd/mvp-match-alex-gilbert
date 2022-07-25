@@ -1,17 +1,16 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Wrapper, Container } from './styles';
 
 import Projects from '../projects';
 import Report from '../report';
 import NoReports from '../no-reports';
-import Total from '../total';
+import { GridTotal } from '../total';
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { selectReportArr } from '../../store/report/report.selector';
 
 const Grid: FC = () => {
-  const display = useSelector((state: RootState) => state.report?.showReport);
-  const reportArray = useSelector((state: RootState) => state.report?.report);
+  const reportArray = useSelector(selectReportArr);
 
   if (reportArray.length === 0) {
     return <NoReports />;
@@ -24,7 +23,7 @@ const Grid: FC = () => {
         <Report />
       </Container>
 
-      {!display && <Total marginTop='27px' marginLeft={100} />}
+      <GridTotal marginTop='27px' marginLeft={100} />
     </Wrapper>
   );
 };

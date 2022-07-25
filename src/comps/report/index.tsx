@@ -15,7 +15,7 @@ import { selectReportArr } from '../../store/report/report.selector';
 
 import { colorArr } from '../../theme';
 
-import Total from '../total';
+import { ChartTotal } from '../total';
 
 const ReportComp: FC = () => {
   const display = useSelector((state: RootState) => state.report?.showReport);
@@ -59,7 +59,7 @@ const ReportComp: FC = () => {
     <Wrapper>
       <Legend arr={legendArr} />
       <Chart data={chartData} totalValue={returnTotal(reportArray)} />
-      <Total marginLeft={0} marginTop='auto' width='100%' />
+      <ChartTotal marginLeft={0} marginTop='auto' width='100%' />
     </Wrapper>
   );
 };
