@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
@@ -9,7 +9,6 @@ import { Wrapper } from './styles';
 import { useDispatch } from 'react-redux';
 import { DATE_ACTION_TYPES } from '../../store/date/date.type';
 
-import { Moment } from 'moment';
 import moment from 'moment';
 
 const Date: FC<{
