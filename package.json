@@ -57,6 +57,7 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.25"
+    "@types/styled-components": "^5.1.25",
+    "redux-saga-test-plan": "^4.0.5"
   }
 }
