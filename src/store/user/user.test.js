@@ -3,7 +3,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { fetchUserAsync } from './user.saga';
 import { USER_ACTION_TYPES } from './user.types';
 
-it('just works!', () => {
+it('on fetch user saga', () => {
   return (
     expectSaga(fetchUserAsync)
       // Assert that the `put` will eventually happen.
