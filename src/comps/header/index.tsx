@@ -11,14 +11,14 @@ import {
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { USER_ACTION_TYPES, User } from '../../store/user/user.types';
+import { UserActionTypes, User } from '../../store/user/user.types';
 import { RootState } from '../../store/store';
 
 const Header: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: USER_ACTION_TYPES.FETCH_USER_START });
+    dispatch({ type: UserActionTypes.FETCH_USER_START });
   }, []);
 
   const user = useSelector((state: RootState) => state.user?.user);

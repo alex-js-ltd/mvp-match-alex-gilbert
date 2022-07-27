@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { fetchUserSuccess, fetchUserFailed } from './user.action';
 
-import { USER_ACTION_TYPES, Res } from './user.types';
+import { UserActionTypes, Res } from './user.types';
 
 export async function fetchUser(): Promise<Res> {
   return await axios.get(
@@ -23,7 +23,7 @@ export function* fetchUserAsync() {
 }
 
 export function* onFetchUser() {
-  yield* takeLatest(USER_ACTION_TYPES.FETCH_USER_START, fetchUserAsync);
+  yield* takeLatest(UserActionTypes.FETCH_USER_START, fetchUserAsync);
 }
 
 export function* userSaga() {

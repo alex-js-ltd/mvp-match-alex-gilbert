@@ -1,4 +1,4 @@
-export enum USER_ACTION_TYPES {
+export enum UserActionTypes {
   FETCH_USER_START = 'user/FETCH_USER_START',
   FETCH_USER_SUCCESS = 'user/FETCH_USER_SUCCESS',
   FETCH_USER_FAILED = 'user/FETCH_USER_FAILED',

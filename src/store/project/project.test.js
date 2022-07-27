@@ -1,14 +1,14 @@
-import { fetchProjectAsync, fetchProject } from './project.saga';
+import { takeLatest } from 'redux-saga/effects';
+
+import { PROJECT_ACTION_TYPES } from './project.types';
+import { onFetchProject, fetchProjectAsync } from './project.saga';
 
 describe('on fetch project saga', () => {
-  const generator = fetchProjectAsync();
+  it('should trigger on FETCH_PROJECT_START', () => {
+    const generator = onFetchProject();
 
-  it('should call fecthProject', () => {
-    const api = {
-      fetchProject: fetchProject,
-    };
-    const fetchProjectFn = jest.spyOn(api, 'fetchProject');
-    generator.next();
-    expect(fetchProjectFn).toHaveBeenCalled;
+    expect(generator.next().value).toEqual(
+      takeLatest(PROJECT_ACTION_TYPES.FETCH_PROJECT_START, fetchProjectAsync)
+    );
   });
 });

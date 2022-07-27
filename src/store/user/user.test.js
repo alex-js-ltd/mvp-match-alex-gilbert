@@ -1,14 +1,14 @@
-import { fetchUserAsync, fetchUser } from './user.saga';
+import { takeLatest } from 'redux-saga/effects';
+
+import { UserActionTypes } from './user.types';
+import { onFetchUser, fetchUserAsync } from './user.saga';
 
 describe('on fetch user saga', () => {
-  const generator = fetchUserAsync();
+  it('should trigger on FETCH_USER_START', () => {
+    const generator = onFetchUser();
 
-  it('should call fecthUser', () => {
-    const api = {
-      fetchUser: fetchUser,
-    };
-    const fetchUserFn = jest.spyOn(api, 'fetchUser');
-    generator.next();
-    expect(fetchUserFn).toHaveBeenCalled;
+    expect(generator.next().value).toEqual(
+      takeLatest(UserActionTypes.FETCH_USER_START, fetchUserAsync)
+    );
   });
 });

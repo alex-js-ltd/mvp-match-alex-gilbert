@@ -1,14 +1,14 @@
-import { fetchGateWayAsync, fetchGateWay } from './gateway.saga';
+import { takeLatest } from 'redux-saga/effects';
+
+import { GATEWAY_ACTION_TYPES } from './gateway.types';
+import { onFetchGateWay, fetchGateWayAsync } from './gateway.saga';
 
 describe('on fetch gateway saga', () => {
-  const generator = fetchGateWayAsync();
+  it('should trigger on FETCH_GATEWAY_START', () => {
+    const generator = onFetchGateWay();
 
-  it('should call fecthGateWay', () => {
-    const api = {
-      fetchGateWay: fetchGateWay,
-    };
-    const fetchGateWayFn = jest.spyOn(api, 'fetchGateWay');
-    generator.next();
-    expect(fetchGateWayFn).toHaveBeenCalled;
+    expect(generator.next().value).toEqual(
+      takeLatest(GATEWAY_ACTION_TYPES.FETCH_GATEWAY_START, fetchGateWayAsync)
+    );
   });
 });
