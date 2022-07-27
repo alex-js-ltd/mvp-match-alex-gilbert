@@ -6,7 +6,7 @@ import { fetchUserSuccess, fetchUserFailed } from './user.action';
 
 import { USER_ACTION_TYPES, Res } from './user.types';
 
-async function fetchUser(): Promise<Res> {
+export async function fetchUser(): Promise<Res> {
   return await axios.get(
     `${process.env.REACT_APP_BASE_URL}/mock-api/api/users`
   );

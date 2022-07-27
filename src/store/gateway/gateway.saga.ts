@@ -6,7 +6,7 @@ import { fetchGateWaySuccess, fetchGateWayFailed } from './gateway.action';
 
 import { GATEWAY_ACTION_TYPES, Res } from './gateway.types';
 
-async function fetchGateWay(): Promise<Res> {
+export async function fetchGateWay(): Promise<Res> {
   return await axios.get(
     `${process.env.REACT_APP_BASE_URL}/mock-api/api/gateways`
   );

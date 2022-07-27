@@ -6,7 +6,7 @@ import { fetchProjectSuccess, fetchProjectFailed } from './project.action';
 
 import { PROJECT_ACTION_TYPES, Res } from './project.types';
 
-async function fetchProject(): Promise<Res> {
+export async function fetchProject(): Promise<Res> {
   return await axios.get(
     `${process.env.REACT_APP_BASE_URL}/mock-api/api/projects`
   );
