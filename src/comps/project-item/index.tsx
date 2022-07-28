@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Container, Header, Text } from './styles';
 
 import { Report } from '../../store/report/report.types';
@@ -23,6 +23,11 @@ const ProjectItem: FC<{ name: string; data: Report[] }> = ({ name, data }) => {
 
   const selectedGatewayId = useSelector(selectGatewayId);
 
+  const sortDate = data?.sort(
+    // @ts-ignore
+    (a, b) => new Date(a.created) - new Date(b.created)
+  );
+
   if (data?.length === 0) {
     return null;
   }
@@ -45,7 +50,7 @@ const ProjectItem: FC<{ name: string; data: Report[] }> = ({ name, data }) => {
         selectedGatewayId={selectedGatewayId}
       />
 
-      {data?.map(({ created, gatewayId, paymentId, amount }) => (
+      {sortDate?.map(({ created, gatewayId, paymentId, amount }) => (
         <TableRowDefault
           key={paymentId}
           created={created}
