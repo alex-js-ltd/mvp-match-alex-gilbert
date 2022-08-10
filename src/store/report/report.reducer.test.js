@@ -1,7 +1,7 @@
 import { REPORT_ACTION_TYPES } from './report.types';
 import { reportReducer, REPORT_INITIAL_STATE } from './report.reducer';
 
-describe('userReducer', () => {
+describe('reportReducer', () => {
   it('should return initial state', () => {
     expect(reportReducer(undefined, {})).toEqual(REPORT_INITIAL_STATE);
   });
